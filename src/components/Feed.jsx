@@ -1,31 +1,31 @@
-import { useState, useEffect } from "react";
-import { ScrollView, StyleSheet, Text } from "react-native";
-import Posts from "./Posts";
+import { useState, useEffect } from 'react';
+import { ScrollView, StyleSheet, Text } from 'react-native';
+import Posts from './Posts';
 
-export default function Feed() {
-    const [posts, setPosts] = useState();
-    useEffect( () => {
-        fetch('https://express-ts-c8.web.app/photos')
-        .then(res => res.json())
-        .then(setPosts)
-        .catch(console.error)
-    }, [])
-    return (
-        <ScrollView style={styles.feed}>
-            {!posts
-                ? <Text>Loading...</Text>
-                : posts.map((post) => (
-                    <Posts key={post.photoId} post={post}/>
-                ))
-            }
-        </ScrollView>
-    )
+export default function Feed({ navigation }) {
+  const [posts, setPosts] = useState();
+  useEffect(() => {
+    fetch('https://express-ts-c8.web.app/photos')
+      .then(res => res.json())
+      .then(setPosts)
+      .catch(console.error)
+  }, [])
+  return (
+    <ScrollView style={styles.feed}>
+      {!posts
+        ? <Text>Loading...</Text>
+        : posts.map(post => (
+          <Posts key={post.photoId} post={post} navigation={navigation} />
+        ))
+      }
+    </ScrollView>
+  )
 }
 
 const styles = StyleSheet.create({
-    feed: {
-        "backgroundColor": 'whitesmoke',
-        marginTop: 40,
-        width: '100%',
-    }
+  feed: {
+    backgroundColor: '#e0e0e0',
+    // marginTop: 40,
+    width: '100%',
+  }
 })

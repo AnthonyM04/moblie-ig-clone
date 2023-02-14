@@ -1,31 +1,39 @@
-import { Image, Text, View, StyleSheet } from 'react-native';
+import { useContext } from "react";
+import { Image, Text, View, StyleSheet, TouchableOpacity } from "react-native";
+import { PostContext } from "../../App";
 
-export default function Posts({ post }) {
-    return(
-        <View style={styles.post}>
-            <Image style={styles.image} source={{uri: post.photo}} />
-            <Text style={styles.title}>{post.description}</Text>
-        </View>
-    )
+export default function Posts({ post, navigation }) {
+  const { setCurrentPost } = useContext(PostContext);
+  const handleTouch = () => {
+    setCurrentPost(post)
+    navigation.navigate("Details")
+  }
+  return (
+    <TouchableOpacity onPress={handleTouch}>
+      <View style={styles.post}>
+        <Image style={styles.image} source={{ uri: post.photo }} />
+        <Text style={styles.title}>{post.description}</Text>
+      </View>
+    </TouchableOpacity>
+  )
 }
 
 const styles = StyleSheet.create({
-    post: {
-        margin: 17.5,
-        padding: 17.5,
-        borderRadius: 5,
-        backgroundColor: 'white',
-        shadowColor: 'black',
-        shadowOffset: { width: 1, height: 2 }
-    },
-    image: {
-        width: '100%',
-        height: 333,
-        borderRadius: 15
-    },
-
-    title: {
-        fontSize: 20,
-        fontWeight: 'bold'
-    }
+  post: {
+    margin: 10,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    shadowColor: 'black',
+    shadowOffset: { width: 1, height: 2 },
+  },
+  image: {
+    width: '100%',
+    borderRadius: 10,
+    marginBottom: 10,
+    height: 300,
+  },
+  title: {
+    fontSize: 20,
+  },
 })
