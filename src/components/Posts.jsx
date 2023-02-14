@@ -20,20 +20,31 @@ export default function Posts({ post, navigation }) {
 
 const styles = StyleSheet.create({
   post: {
-    margin: 10,
-    padding: 10,
+    margin: 30,
+    padding: 13,
     borderRadius: 10,
-    backgroundColor: 'white',
-    shadowColor: 'black',
-    shadowOffset: { width: 1, height: 2 },
+    backgroundColor: 'rgba(95,94,130,0.8)',
+    
+    shadowOffset: {
+      width: "0",
+      height: "0",
+    },
+    shadowOpacity: "0.96",
+    shadowRadius: "10",
+    shadowColor: 'black'
   },
+
   image: {
     width: '100%',
     borderRadius: 10,
     marginBottom: 10,
     height: 300,
   },
+  
   title: {
-    fontSize: 20,
+    textAlign: 'center',
+    marginTop: 13,
+    fontSize: 19,
+    color: 'white'
   },
 })

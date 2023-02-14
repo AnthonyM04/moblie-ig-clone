@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ScrollView, StyleSheet, Text } from 'react-native';
+import { ScrollView, StyleSheet, Text, ImageBackground } from 'react-native';
 import Posts from './Posts';
 
 export default function Feed({ navigation }) {
@@ -12,20 +12,30 @@ export default function Feed({ navigation }) {
   }, [])
   return (
     <ScrollView style={styles.feed}>
+      <ImageBackground 
+        source={ require("../../assets/bg2.webp") }
+        resizeMode="cover"
+        style={styles.bg}>
       {!posts
         ? <Text>Loading...</Text>
         : posts.map(post => (
           <Posts key={post.photoId} post={post} navigation={navigation} />
         ))
       }
+      </ImageBackground>
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   feed: {
-    backgroundColor: '#e0e0e0',
+    backgroundColor: 'rgba(36,46,80,255)',
     // marginTop: 40,
     width: '100%',
+  },
+
+  bg: {
+    flex: 1,
+    justifyContent:'center'
   }
 })
